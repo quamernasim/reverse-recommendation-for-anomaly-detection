@@ -1,4 +1,5 @@
 # Reverse Recommendations for Anomaly Detection: Fraud Detection System with Qdrant and RAG
+<img src="assets/Fraud Detection.png" alt="Fraud Detection"/>
 
 This repository demonstrates how to build an anomaly detection system using reverse recommendations. Specifically, we use Qdrant to create a vector store of normal transactions and apply a RAG (Retrieval-Augmented Generation) based approach to explain anomalous transactions, such as fraudulent activity. The system compares new transactions to a baseline of normal behavior and flags transactions that deviate from expected patterns.
 
@@ -37,6 +38,25 @@ To explain why a transaction is flagged as fraudulent, we use a RAG model. The R
 
 - Context Generation: The nearest transactions from the Qdrant database are retrieved and used to provide context for the RAG model.
 - LLM Integration: The system uses prompts to guide the model in explaining why an anomaly was detected.
+
+## Running the Code
+### Requirements
+- Python 3.10.14
+
+### Installation of Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Dis-Similarity Based Anomaly Detection
+```bash
+python dissimilarity_based_fraud_detection.py
+```
+
+### RAG Based Explainable Anomaly Detection
+```bash
+python rag_based_fraud_detection.py
+```
 
 ## Conclusion
 In this repository, we've combined reverse recommendations with vector search and RAG to detect and explain fraudulent transactions. This approach can be extended to other anomaly detection scenarios, such as insurance claims, customer interactions, or network traffic monitoring.
