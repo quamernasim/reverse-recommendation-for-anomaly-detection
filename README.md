@@ -50,12 +50,12 @@ pip install -r requirements.txt
 
 ### Dis-Similarity Based Anomaly Detection
 ```bash
-python dissimilarity_based_fraud_detection.py --root {path_to_root} --data_path {path_to_data} --embedding_model_id {model_id} --max_transactions {max_transactions} --new_transaction_info {new_transaction_info} --user {user_id}
+python src/dissimilarity_based_fraud_detection.py --root {path_to_root} --data_path {path_to_data} --embedding_model_id {model_id} --max_transactions {max_transactions} --new_transaction_info {new_transaction_info} --user {user_id}
 ```
 
 ### RAG Based Explainable Anomaly Detection
 ```bash
-python rag_based_fraud_detection.py --root {root} --data_path {data_path} --embedding_model_id {embedding_model_id} --max_transactions {max_transactions} --new_transaction_info {new_transaction_info} --user {user} --model_id {model_id}
+python src/rag_based_fraud_detection.py --root {root} --data_path {data_path} --embedding_model_id {embedding_model_id} --max_transactions {max_transactions} --new_transaction_info {new_transaction_info} --user {user} --model_id {model_id}
 ```
 
 ## Conclusion
