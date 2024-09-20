@@ -1,6 +1,9 @@
 import time
 from tqdm import tqdm
 
+from transformers import AutoTokenizer, AutoModel
+from qdrant_client import QdrantClient, models
+
 from utils import (
     convert_transaction_data_to_str,
     get_transactional_data,
@@ -17,7 +20,7 @@ data_path = 'data/fraudTrain.csv'
 data, random_cc_num = load_data(root, data_path)
 
 
-from transformers import AutoTokenizer, AutoModel
+
 
 # Load the pre-trained model
 embedding_model_id = "BAAI/bge-small-en"
@@ -36,7 +39,6 @@ for user in random_cc_num:
         # This can be changed to any number as per the requirement
         break
 
-from qdrant_client import QdrantClient, models
 
 # Initialize in-memory Qdrant client
 client = QdrantClient(":memory:")
