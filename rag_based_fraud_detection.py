@@ -1,6 +1,15 @@
 import time
 from tqdm import tqdm
 
+from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoTokenizer
+import transformers
+import torch
+
+from transformers import AutoTokenizer, AutoModel
+from qdrant_client import QdrantClient, models
+
+
+
 from utils import (
     convert_transaction_data_to_str,
     get_user_basic_info,
@@ -16,7 +25,6 @@ data_path = 'data/fraudTrain.csv'
 
 data, random_cc_num = load_data(root, data_path)
 
-from transformers import AutoTokenizer, AutoModel
 
 # Load the pre-trained model
 embedding_model_id = "BAAI/bge-small-en"
@@ -36,7 +44,6 @@ for user in random_cc_num:
         print(f"Customer Information Loaded Successfully for {user}")
         break
 
-from qdrant_client import QdrantClient, models
 
 # Initialize in-memory Qdrant client
 client = QdrantClient(":memory:")
@@ -131,9 +138,7 @@ RESPONSE:
 '''
 
 
-from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoTokenizer
-import transformers
-import torch
+
 
 model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 
