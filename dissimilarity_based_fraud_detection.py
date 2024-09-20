@@ -23,7 +23,7 @@ def main(args):
     new_transaction_info = args.new_transaction_info
 
     # Load the data
-    data, _ = load_data(root, data_path)
+    data, _ = load_data(root, data_path, random=False)
 
     # Load the pre-trained model
     tokenizer = AutoTokenizer.from_pretrained(embedding_model_id)
