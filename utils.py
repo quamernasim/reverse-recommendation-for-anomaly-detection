@@ -281,7 +281,7 @@ def modify_column(data):
 
     return data
 
-def load_data(root, data_path):
+def load_data(root, data_path, random=True):
     '''
     This function loads the data from the given path
     It filters the data and modifies the columns
@@ -295,7 +295,11 @@ def load_data(root, data_path):
         random_cc_num: list
     '''
     df = pd.read_csv(pjoin(root, data_path))
-    data, random_cc_num = filter_data(df)
+    if random:
+        data, random_cc_num = filter_data(df)
+    else:
+        data = df
+        random_cc_num = None
     data = modify_column(data)
     return data, random_cc_num
 
