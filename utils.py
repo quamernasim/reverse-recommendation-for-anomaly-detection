@@ -325,3 +325,36 @@ def detect_anomalies(query_response, threshold=0.95):
         return True
     else:
         return False
+    
+def get_context_for_anomaly_detection(new_transaction_info, client, k=10):
+    '''
+    This function returns the context for the new transaction for anomaly detection
+    It first embeds the new transaction and then finds the k closest transactions to the new transaction
+    Then it combines the transaction descriptions of the k closest transactions to provide the context for the new transaction
+
+    Args:
+        new_transaction_info: str: Information about the new transaction
+        client: QdrantClient: Qdrant client for querying the transactions
+        k: int: Number of closest transactions to consider for context
+
+    Returns:
+        context: str: Context for the new transaction
+    '''
+
+    # Embed the new transaction
+    new_embedding = embed_transaction(new_transaction_info)
+
+    # Get the k closest transactions
+    results = client.query_points(
+        collection_name="transactions",
+        query=new_embedding[0].tolist(),
+        limit=k,
+    ).points
+
+    # Get the context, which is the transaction description for the k closest transactions
+    context = []
+    for res in results:
+        context.append(res.payload['transaction_data'])
+    context = "\n=============================NEW EXAMPLE===================================\n".join(context)
+
+    return context
