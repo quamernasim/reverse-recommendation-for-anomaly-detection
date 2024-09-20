@@ -326,7 +326,7 @@ def detect_anomalies(query_response, threshold=0.95):
     else:
         return False
     
-def get_context_for_anomaly_detection(new_transaction_info, client, k=10):
+def get_context_for_anomaly_detection(new_transaction_info, client, model, tokenizer, k=10):
     '''
     This function returns the context for the new transaction for anomaly detection
     It first embeds the new transaction and then finds the k closest transactions to the new transaction
@@ -342,7 +342,7 @@ def get_context_for_anomaly_detection(new_transaction_info, client, k=10):
     '''
 
     # Embed the new transaction
-    new_embedding = embed_transaction(new_transaction_info)
+    new_embedding = embed_transaction(new_transaction_info, model, tokenizer)
 
     # Get the k closest transactions
     results = client.query_points(
